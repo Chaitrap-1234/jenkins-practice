@@ -1,44 +1,45 @@
 pipeline {
     agent {
-      label 'linux-node'
+        label 'linux-node'
+    }
 
     stages {
-
-        stage('Checkout') {
+        stage('checkout'){
             steps {
-                echo "Checking out source code..."
+                echo "checkout source code"
             }
         }
 
         stage('Build') {
             steps {
-                echo "Building the application..."
-                sh 'echo Build Successful'
+                echo "Build stage"
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests..."
-                sh 'echo Test Successful'
+                echo "Test stage"
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying application..."
-                sh 'echo Deployment Successful'
+                echo "Deploy stage"
             }
         }
     }
 
     post {
         success {
-            echo "Pipeline executed successfully."
+            echo "All stages completed successfully!"
         }
 
         failure {
             echo "Pipeline execution failed."
+        }
+
+        always {
+            echo "Pipeline execution finished."
         }
     }
 }
